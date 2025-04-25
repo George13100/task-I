@@ -221,3 +221,98 @@ body {
     color: #666666;
     font-family: 'Merienda', cursive;
 }
+
+/* mobile */
+@media (max-width: 480px) {
+  .profile-card {
+    width: 90%;
+    padding: 80px 10px 30px 10px;
+    border-radius: 40px;
+  }
+
+  .profile-img {
+    width: 130px;
+    height: 130px;
+    top: -65px;
+  }
+
+  .profile-name {
+    font-size: 28px;
+  }
+
+  .profile-role {
+    font-size: 18px;
+  }
+
+  .profile-location {
+    font-size: 14px;
+  }
+
+  .profile-stat-number {
+    font-size: 18px;
+  }
+
+  .profile-stat-label {
+    font-size: 14px;
+  }
+
+  .header-background {
+    height: 180px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+  }
+}
+
+/* tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .profile-card {
+    width: 85%;
+    padding: 80px 15px 30px 15px;
+    border-radius: 50px;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    top: -75px;
+  }
+
+  .profile-name {
+    font-size: 32px;
+  }
+
+  .profile-role {
+    font-size: 20px;
+  }
+
+  .profile-location {
+    font-size: 15px;
+  }
+
+  .profile-stat-number {
+    font-size: 20px;
+  }
+
+  .profile-stat-label {
+    font-size: 14px;
+  }
+
+  .header-background {
+    height: 200px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+}
+/* mobile */
+@media (max-width: 480px) {
+  .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12 {
+    transform: scale(0.6); 
+  }
+}
+/* tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12 {
+
+    transform: scale(0.8);
+  }
+}
