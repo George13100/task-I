@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/stylelog.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <form class="login-box" id="login">
+      <h2>Login</h2>
+      <div class="input-group">
+        <input type="text" id="email" placeholder="email" required>
+        <span class="icon"><i class="fa fa-user"></i></span>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+        <span class="icon"><i class="fa fa-lock"></i></span>
+      </div>
+      <div class="options" style="justify-content: flex-start;">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <div class="register-link">
+        Don't have an account? <a href="register.html">Register</a>
+      </div>
+    </form>
+  </div>
+  
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+  const supabase = createClient('https://umgwaqoazwbczepffhxg.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtZ3dhcW9hendiY3plcGZmaHhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwMjU0ODYsImV4cCI6MjA2MzYwMTQ4Nn0.Gjt0GrOhd0e2NXiVSRg82xoyp4ijJpuHAxVNhqlHL-0')
+
+  document.getElementById("login").addEventListener("submit", async (e) => {
+    e.preventDefault()
+    const email =
+     document.getElementById("email").value
+    const password = 
+    document.getElementById("password").value
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) return alert(error.message)
+
+    localStorage.setItem("user_id", data.user.id)
+    location.href = "index.html"
+  })
+
+  // Generate random stars
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (2 + Math.random() * 2) + 's';
+      star.style.opacity = 0.5 + Math.random() * 0.5;
+      star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
