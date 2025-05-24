@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/stylelog.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <form class="login-box" id="login-form">
+      <h2>Login</h2>
+      <div class="input-group">
+        <input type="email" id="login-email" placeholder="email" required>
+        <span class="icon"><i class="fa fa-user"></i></span>
+      </div>
+      <div class="input-group">
+        <input type="password" id="login-password" placeholder="Password" required>
+        <span class="icon"><i class="fa fa-lock"></i></span>
+      </div>
+      <div class="options" style="justify-content: flex-start;">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <div class="register-link">
+         <p id="login-message" style="color:red; font-weight:bold; margin-top:10px;"></p>
+        Don't have an account? <a href="register.html">Register</a>
+      </div>
+    </form>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const client = supabase.createClient(
+      "https://umgwaqoazwbczepffhxg.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtZ3dhcW9hendiY3plcGZmaHhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwMjU0ODYsImV4cCI6MjA2MzYwMTQ4Nn0.Gjt0GrOhd0e2NXiVSRg82xoyp4ijJpuHAxVNhqlHL-0"
+    );
+
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      const { data, error } = await client.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        document.getElementById("login-message").textContent = "Login failed: " + error.message;
+      } else {
+        const userId = data.user.id;
+        const { data: profile, error: profileError } = await client
+          .from("profiles")
+          .select("*")
+          .eq("user_id", userId)
+          .single();
+
+        if (profileError || !profile) {
+          document.getElementById("login-message").textContent = "No profile found. Please sign up first.";
+          await client.auth.signOut();
+        } else {
+          window.location.href = "index.html";
+        }
+      }
+    });
+  </script>
+
+  <script>
+  // Generate random stars
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (2 + Math.random() * 2) + 's';
+      star.style.opacity = 0.5 + Math.random() * 0.5;
+      star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>

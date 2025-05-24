@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+ <link rel="stylesheet" href="css/stylesign.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <form class="login-box" id="signup-form">
+  <h2>Sign up</h2>
+
+  <div class="input-group">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <span class="icon"><i class="fa fa-user-circle"></i></span>
+  </div>
+
+  <div class="input-group">
+    <input type="text" id="email" placeholder="Email" required>
+    <span class="icon"><i class="fa fa-user"></i></span>
+  </div>
+
+  <div class="input-group">
+    <input type="password" id="password" placeholder="Password" required>
+  </div>
+
+  <div class="input-group">
+    <input type="file" accept="image/*" id="avatar">
+    <span class="icon"><i class="fa fa-image"></i></span>
+  </div>
+
+  <div class="options" style="justify-content: flex-start;">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+
+  <button type="submit" class="login-btn">submit</button>
+
+  <div class="register-link">
+    already have account! <a href="log.html">log in</a>
+</div>
+</form>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/signup .js"></script>
+</body>
+</html>
